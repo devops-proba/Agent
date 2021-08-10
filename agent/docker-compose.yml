@@ -25,8 +25,6 @@ services:
     
   database:
     image: mysql:${MYSQL_VERSION:-8.0.26}
-#    cap_add:
-#      - SYS_NICE  # CAP_SYS_NICE
     container_name: mysql
     restart: always
     networks:
