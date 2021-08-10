@@ -20,6 +20,8 @@ jobs:
         with:
           java-version: 1.11
       - name: Maven Package
+        working-directory: ./agent
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
+        working-directory: ./agent
         run: mvn -B clean verify
