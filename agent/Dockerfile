@@ -1,6 +1,7 @@
 
-#RUN mvn -B clean verify
-
+#RUN mvn package -P${STAGE} -DskipTests
+#RUN mvn -B clean verify  
+#run: mvn -B clean verify -Dspring.profiles.active=test
 
 FROM maven:3.6.3-ibmjava-8-alpine AS appProductBuild
 ARG STAGE=dev

@@ -1,1 +1,0 @@
-INSERT INTO `product` (`id`,`name`, `price`, `quantity`, `picture`) VALUES ('1', 'blabla', '2000', '10', 'picture');

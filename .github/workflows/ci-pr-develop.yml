@@ -24,4 +24,4 @@ jobs:
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
         working-directory: ./agent
-        run: mvn -B clean verify
+        run: mvn -B clean verify -Dspring.profiles.active=test

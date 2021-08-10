@@ -7,6 +7,7 @@ services:
       args:
         STAGE: ${STAGE:-dev}
       target: ${TARGET:-appProductRuntime}
+#      target: appProductBuild
     image: nikolina97/product-service:${VERSION:-0.1.0}-${STAGE:-dev}
     container_name: products
     restart: on-failure
@@ -39,7 +40,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE:-products}
     volumes:
       - database-data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   database-data:
