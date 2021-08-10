@@ -35,10 +35,11 @@ public class ProductService {
 		System.out.println(name);
 		Product prod = productRepository.findOneByName(name).orElse(null);
 		if (prod != null) {
+			System.out.println("exception");
 			throw new InvalidDataException("The specified name is already taken!");
 		}
-		
 		Product saveProd = ProductMapper.toEntity(productDTO);
+
 		return productRepository.save(saveProd);
 	}
 

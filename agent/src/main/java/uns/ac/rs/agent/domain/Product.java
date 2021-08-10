@@ -41,6 +41,14 @@ public class Product {
 		this.picture = picture;
 	}
 
+	public Product(String name, Double price, Integer quantity, String picture) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.picture = picture;
+	}
+
 	public Long getId() {
 		return id;
 	}
