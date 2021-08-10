@@ -44,6 +44,6 @@ public class ProductIT {
 		assertEquals(prod, productService.createProduct(prodDTO));
 //		HttpEntity<ProductDTO> httpEntity =  new HttpEntity<>(prodDTO, new HttpHeaders());;
 //		ResponseEntity<Product> responseEntity = restTemplate.exchange("/product/create", HttpMethod.POST, httpEntity, Product.class);
-//		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+//		assertEquals(HttpStatus.OK, responseEntity.getStatusCode()); ddd
 	}
 }
