@@ -2,7 +2,7 @@ package uns.ac.rs.agent.integration;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-
+import static org.mockito.ArgumentMatchers.eq;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +41,7 @@ public class ProductTest {
 		Product prod = new Product(1L, "name", 200.20, 100, "picture");
 		ProductDTO prodDTO = ProductMapper.fromEntity(prod);
 		when(productRepository.findOneByName(prod.getName())).thenReturn(null);	
+		when(productRepository.save(eq(prod))).thenReturn(prod);	
 		HttpEntity<ProductDTO> httpEntity =  new HttpEntity<>(prodDTO, new HttpHeaders());;
 		ResponseEntity<Product> responseEntity = restTemplate.exchange("/product/create", HttpMethod.POST, httpEntity, Product.class);
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
