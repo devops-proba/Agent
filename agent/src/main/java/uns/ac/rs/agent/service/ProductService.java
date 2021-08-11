@@ -32,6 +32,7 @@ public class ProductService {
 		}
 		
 		String name = productDTO.getName();
+		System.out.println(name);
 		Product prod = productRepository.findOneByName(name).orElse(null);
 		if (prod != null) {
 			throw new InvalidDataException("The specified name is already taken!");
