@@ -9,25 +9,23 @@ jobs:
 
   create-release:
     name: Create release and publish to Github Packages
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
+      - uses: mathieudutour/github-tag-action@v5.5
       - name: Bump version and push tag
         id: tag_version
-        uses: mathieudutour/github-tag-action@v5.5
         with:
           release_branches: main
           custom_tag: 0.1.0
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
+      - uses: actions/create-release@v1
       - name: Create a GitHub prerelease
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
           prerelease: false
-
       - name: Publish - GitHub Packages agent
         working-directory: ./agent
         run: mvn -B clean deploy -DskipTests
