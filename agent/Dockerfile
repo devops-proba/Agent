@@ -3,7 +3,7 @@
 #RUN mvn -B clean verify  
 #run: mvn -B clean verify -Dspring.profiles.active=test
 
-FROM maven:3.6.3-ibmjava-8-alpine AS appProductBuild
+FROM nikolina97/maven-repo:0.0.1 AS appProductBuild
 ARG STAGE=dev
 WORKDIR /usr/src/product
 COPY . .
