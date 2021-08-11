@@ -42,8 +42,5 @@ public class ProductIT {
 		when(productRepository.findOneByName(prodDTO.getName())).thenReturn(Optional.empty());	
 		when(productRepository.save(Mockito.any(Product.class))).thenReturn(prod);	
 		assertEquals(prod, productService.createProduct(prodDTO));
-//		HttpEntity<ProductDTO> httpEntity =  new HttpEntity<>(prodDTO, new HttpHeaders());;
-//		ResponseEntity<Product> responseEntity = restTemplate.exchange("/product/create", HttpMethod.POST, httpEntity, Product.class);
-//		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 	}
 }
