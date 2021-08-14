@@ -112,5 +112,11 @@
 		</plugins>
 		<finalName>${app.name}</finalName>
 	</build>
-
+	<distributionManagement>
+	   <repository>
+	     <id>github</id>
+	     <name>GitHub devops-proba Apache Maven Packages</name>
+	     <url>https://maven.pkg.github.com/devops-proba/Agent</url>
+	   </repository>
+	</distributionManagement>
 </project>
