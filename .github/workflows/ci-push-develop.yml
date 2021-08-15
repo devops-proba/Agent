@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  artifact:
+  pre-realese:
     runs-on: ubuntu-latest
     steps:
         - name: Bump version and push tag
@@ -28,16 +28,21 @@ jobs:
             release_name: Prerelease ${{ steps.tag_version.outputs.new_tag }}
             body: ${{ steps.tag_version.outputs.changelog }}
             prerelease: true
-        - name: Build docker image
-          env:
-            REPO_TAG: ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
-            REPO: ${{ secrets.DOCKER_USER }}/product-service-proba
-          steps:
+            
+  docker:
+    needs: pre-realese
+    runs-on: ubuntu-latest
+    steps:           
+      - name: Build docker image
+        env:
+          REPO_TAG: ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
+          REPO: ${{ secrets.DOCKER_USER }}/product-service-proba
+#          steps:
 #          - uses: actions/checkout@v1
-          - name: Login to Docker Hub
-            run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-          - name: Build Docker image
-            working-directory: ./product-service
-            run: docker build -t $REPO_TAG -t --no-cache .
-          - name: Publish Docker image
-            run: docker push $REPO_TAG      
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+      - name: Build Docker image
+        working-directory: ./product-service
+        run: docker build -t $REPO_TAG -t --no-cache .
+      - name: Publish Docker image
+        run: docker push $REPO_TAG      
