@@ -33,12 +33,11 @@ jobs:
     needs: pre-realese
     runs-on: ubuntu-latest
     name: Build docker image
-        env:
-          REPO_TAG: ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
-          REPO: ${{ secrets.DOCKER_USER }}/product-service-proba
+    env:
+        REPO_TAG: ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
+        REPO: ${{ secrets.DOCKER_USER }}/product-service-proba
     steps:           
-#          steps:
-#          - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
       - name: Build Docker image
