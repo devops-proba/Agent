@@ -28,20 +28,11 @@ jobs:
             release_name: Prerelease ${{ steps.tag_version.outputs.new_tag }}
             body: ${{ steps.tag_version.outputs.changelog }}
             prerelease: true
-            
-  docker:
-    needs: pre-realese
-    runs-on: ubuntu-latest
-    name: Build docker image
-    env:
-        REPO_TAG: ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
-        REPO: ${{ secrets.DOCKER_USER }}/product-service-proba
-    steps:           
-      - uses: actions/checkout@v1
-      - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-      - name: Build Docker image
-        working-directory: ./product-service
-        run: docker build -t $REPO_TAG -t --no-cache .
-      - name: Publish Docker image
-        run: docker push $REPO_TAG      
+        - uses: actions/checkout@v1
+        - name: Build docker image
+          working-directory: ./product-service
+          run: docker build -t ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }} -t --no-cache .
+        - name: Login to Docker Hub
+          run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+        - name: Publish Docker image
+          run: docker push $REPO_TAG      
