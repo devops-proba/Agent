@@ -37,7 +37,7 @@ public class ProductController {
 	public ResponseEntity<?> getProduct(@PathVariable Long id){
 		try {
 			return new ResponseEntity<>(productService.getProduct(id), HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (InvalidDataException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -47,8 +47,7 @@ public class ProductController {
 	public ResponseEntity<?> create(@RequestBody ProductDTO productDTO) {
 		try {
 			return new ResponseEntity<>(productService.createProduct(productDTO), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (InvalidDataException e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -58,7 +57,7 @@ public class ProductController {
 	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
 		try {
 			return new ResponseEntity<>(productService.updateProduct(id, productDTO), HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (InvalidDataException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
@@ -70,7 +69,7 @@ public class ProductController {
 		try {
 			productService.delete(id);
 			return new ResponseEntity<String>("Product successfully deleted!", HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (InvalidDataException e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
