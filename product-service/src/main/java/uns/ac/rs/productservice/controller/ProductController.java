@@ -27,6 +27,7 @@ public class ProductController {
 	@GetMapping("/getAll")
 	public ResponseEntity<?> gettAllProducts(){
 		try {
+			System.out.println(productService.getAllProducts());
 			return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
