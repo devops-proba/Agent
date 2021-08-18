@@ -39,6 +39,7 @@ export class NewProductComponent implements OnInit {
           image: reader.result
         });
 
+        this.imgFile = this.uploadForm.get('image').value
       };
     }
   }
@@ -49,7 +50,7 @@ export class NewProductComponent implements OnInit {
     let productName: string = this.uploadForm.get('name').value;
     let productPrice: number = this.uploadForm.get('price').value;
     let productQuantity: number = this.uploadForm.get('quantity').value;
-    let productImage: string = "image"
+    let productImage: string = this.uploadForm.get('image').value;
     let product = {
       name: productName,
       quantity: productQuantity,
