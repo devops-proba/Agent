@@ -10,7 +10,7 @@ import uns.ac.rs.productservice.dto.ProductDTO;
 public class ProductMapper extends AbstractMapper {
 	
 	public static ProductDTO fromEntity(Product product) {
-		return new ProductDTO(product.getId(),product.getName(), product.getPrice(), product.getQuantity(), new String(product.getPicture(), StandardCharsets.UTF_8));
+		return new ProductDTO(product.getId(),product.getName(), product.getPrice(), product.getQuantity(), 0, new String(product.getPicture(), StandardCharsets.UTF_8));
 	}
 		
 	public static Product toEntity(ProductDTO productDTO) {
@@ -27,7 +27,7 @@ public class ProductMapper extends AbstractMapper {
 	public static List<ProductDTO> fromEntityList(List<Product> products) {
 		List<ProductDTO> productDTOs = new ArrayList<>();
 		for(Product product:products) {
-			productDTOs.add(new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), new String(product.getPicture(), StandardCharsets.UTF_8)));
+			productDTOs.add(new ProductDTO(product.getId(), product.getName(), product.getPrice(), product.getQuantity(), 0, new String(product.getPicture(), StandardCharsets.UTF_8)));
 		}
 		return productDTOs;
 	}

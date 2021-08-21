@@ -18,6 +18,12 @@ export const ROUTES: RouteInfo[] = [
     title: "Create new product",
     icon: "icon-atom",
     class: ""
+  },
+  {
+    path: "/product-shopping",
+    title: "View shopping cart",
+    icon: "icon-cart",
+    class: ""
   }
 ];
 
@@ -41,3 +47,4 @@ export class SidebarComponent implements OnInit {
     return true;
   }
 }
+

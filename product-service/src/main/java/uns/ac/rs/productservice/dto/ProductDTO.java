@@ -10,7 +10,20 @@ public class ProductDTO {
 	
 	private Integer quantity;
 	
+	private Integer amount;
+	
 	private String picture;
+
+
+	public ProductDTO(Long id, String name, Double price, Integer quantity, Integer amount, String picture) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.amount = amount;
+		this.picture = picture;
+	}
 
 	public ProductDTO(Long id, String name, Double price, Integer quantity, String picture) {
 		super();
@@ -63,6 +76,14 @@ public class ProductDTO {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 
 	@Override

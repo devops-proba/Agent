@@ -12,7 +12,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
-import { ProductShoppingComponent } from './pages/product-shopping/product-shopping.component';
 
 @NgModule({
   imports: [
@@ -25,7 +24,7 @@ import { ProductShoppingComponent } from './pages/product-shopping/product-shopp
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, ProductShoppingComponent],
+  declarations: [AppComponent, AdminLayoutComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -50,8 +50,12 @@ public class OrderService {
 				throw new InvalidDataException("Not enough product on stock!");
 			}
 			
-			if(p.getQuantity() == item.getQuantity()) {
+			else if(p.getQuantity() == item.getQuantity()) {
 				p.setActive(false);
+				p.setQuantity(0);
+			}
+			else{
+				p.setQuantity(p.getQuantity()-item.getQuantity());
 			}
 			
 			OrderItem orderItem = ItemMapper.toEntity(item);

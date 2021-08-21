@@ -13,8 +13,8 @@ public class OrderMapper extends AbstractMapper {
 	public static Order toEntity(OrderDTO orderDTO) {
 		Order order = new Order();
 		order.setAdderss(orderDTO.getAddress());
-		order.setFirstName(order.getFirstName());
-		order.setLastName(order.getLastName());
+		order.setFirstName(orderDTO.getFirstName());
+		order.setLastName(orderDTO.getLastName());
 		order.setTotalPrice(orderDTO.getTotalPrice());
 		return order;
 		
