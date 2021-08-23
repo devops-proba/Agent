@@ -9,6 +9,8 @@ jobs:
 
   pre-realese:
     runs-on: ubuntu-latest
+#    strategy:
+#      matrix: { dir: ['product-service', 'Gateway'] }
     steps:
         - name: Bump version and push tag
           id: tag_version
@@ -29,10 +31,20 @@ jobs:
             body: ${{ steps.tag_version.outputs.changelog }}
             prerelease: true
         - uses: actions/checkout@v1
-        - name: Build docker image
-          working-directory: ./product-service
+        
+        - name: Build product service docker image
+          working-directory:  ./product-service
           run: docker build -t ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }} --no-cache .
+       
+        - name: Build gateway docker image
+          working-directory:  ./Gateway
+          run: docker build -t ${{ secrets.DOCKER_USER }}/gateway-proba:${{ steps.tag_version.outputs.new_tag }} --no-cache .
+       
         - name: Login to Docker Hub
           run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+        
         - name: Publish Docker image
-          run: docker push  ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }} 
+          run: |
+            docker push  ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
+            docker push  ${{ secrets.DOCKER_USER }}/gateway-proba:${{ steps.tag_version.outputs.new_tag }}  
+#        - name: Deploy on test env Heroku
