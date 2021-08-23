@@ -1,1 +1,1 @@
-FROM nikolina97/gateway-proba:v0.0.6
+FROM nikolina97/gateway-proba:v0.1.8
