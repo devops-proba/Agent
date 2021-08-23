@@ -48,4 +48,4 @@ jobs:
             docker push  ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
             docker push  ${{ secrets.DOCKER_USER }}/gateway-proba:${{ steps.tag_version.outputs.new_tag }}  
         - name: Deploy on test env Heroku
-          run: ./deploy.sh v0.1.8 nina.batinic@yahoo.com ca2b9e1f-312a-45d4-9042-b370ffb88225 agent-tim15-terraform-backend-proba nikolina97 terraform-deploy
+          run: bash ./deploy.sh v0.1.8 nina.batinic@yahoo.com ca2b9e1f-312a-45d4-9042-b370ffb88225 agent-tim15-terraform-backend-proba nikolina97 terraform-deploy
