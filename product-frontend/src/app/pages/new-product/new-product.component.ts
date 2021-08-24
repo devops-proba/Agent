@@ -64,6 +64,7 @@ export class NewProductComponent implements OnInit {
         this.router.navigate(['/products']);
       },
       error => {
+        console.log(error);
         this.toastr.error(error.error);
 
       }

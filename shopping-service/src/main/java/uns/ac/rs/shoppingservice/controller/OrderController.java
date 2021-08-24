@@ -13,12 +13,13 @@ import uns.ac.rs.shoppingservice.exception.InvalidDataException;
 import uns.ac.rs.shoppingservice.service.OrderService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
 	
+//	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/create")
 	public ResponseEntity<?> create(@RequestBody OrderDTO orderDTO) {
 		try {

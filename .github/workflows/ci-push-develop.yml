@@ -35,6 +35,10 @@ jobs:
         - name: Build product service docker image
           working-directory:  ./product-service
           run: docker build -t ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }} --no-cache .
+
+        - name: Build shopping service docker image
+          working-directory:  ./shopping-service
+          run: docker build -t ${{ secrets.DOCKER_USER }}/shopping-service-proba:${{ steps.tag_version.outputs.new_tag }} --no-cache .
        
         - name: Build gateway docker image
           working-directory:  ./Gateway
@@ -46,5 +50,6 @@ jobs:
         - name: Publish Docker image
           run: |
             docker push  ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
+            docker push  ${{ secrets.DOCKER_USER }}/shopping-service-proba:${{ steps.tag_version.outputs.new_tag }}            
             docker push  ${{ secrets.DOCKER_USER }}/gateway-proba:${{ steps.tag_version.outputs.new_tag }}  
 #        - name: Deploy on test env Heroku

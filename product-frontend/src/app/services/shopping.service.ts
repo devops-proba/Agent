@@ -16,7 +16,7 @@ export class ShoppingService {
 
   constructor(private http: HttpClient) { }
 
-  createProduct(order: object): Observable<object> {
+  createOrder(order: object): Observable<object> {
     return this.http.post<object>(this.baseUrl + "create", order, { headers: this.headers });
   }
 }

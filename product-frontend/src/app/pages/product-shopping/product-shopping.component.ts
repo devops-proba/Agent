@@ -67,8 +67,8 @@ export class ProductShoppingComponent implements OnInit{
     order2.firstName = this.customerForm.get('firstName').value;
     order2.lastName = this.customerForm.get('lastName').value;
     order2.address = this.customerForm.get('address').value;
-    this.shoppingService.createProduct(this.order).subscribe(
-      product => {
+    this.shoppingService.createOrder(this.order).subscribe(
+      order => {
         this.toastr.success('Your order has been received!');
         this.order = {};
         this.orderItems = [];
