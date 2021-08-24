@@ -26,7 +26,7 @@ rm -rf ./Gateway/Dockerfile
 echo "FROM $APP_IMAGE_NAME_AGENT_PRODUCT" >> ./product-service/Dockerfile
 cat ./product-service/Dockerfile
 
-echo "FROM $APP_IMAGE_NAME_AGETN_GATEWAY" >> ./Gateway/Dockerfile
+echo "FROM $APP_IMAGE_NAME_AGENT_GATEWAY" >> ./Gateway/Dockerfile
 cat ./Gateway/Dockerfile
 
 terraform init -backend-config="conn_str=$DATABASE_URL"

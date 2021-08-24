@@ -41,8 +41,8 @@ jobs:
           run: docker build -t ${{ secrets.DOCKER_USER }}/shopping-service-proba:${{ steps.tag_version.outputs.new_tag }} --no-cache .
        
         - name: Build gateway docker image
-          working-directory:  ./Gateway
-          run: docker build -t ${{ secrets.DOCKER_USER }}/gateway-proba:${{ steps.tag_version.outputs.new_tag }} --no-cache .
+          working-directory:  ./
+          run: docker build -t ${{ secrets.DOCKER_USER }}/gateway-proba:${{ steps.tag_version.outputs.new_tag }} -f ./Gateway/Dockerfile --no-cache .
        
         - name: Login to Docker Hub
           run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
@@ -52,4 +52,5 @@ jobs:
             docker push  ${{ secrets.DOCKER_USER }}/product-service-proba:${{ steps.tag_version.outputs.new_tag }}
             docker push  ${{ secrets.DOCKER_USER }}/shopping-service-proba:${{ steps.tag_version.outputs.new_tag }}            
             docker push  ${{ secrets.DOCKER_USER }}/gateway-proba:${{ steps.tag_version.outputs.new_tag }}  
-#        - name: Deploy on test env Heroku
+        - name: Deploy on test env Heroku
+          run: bash ./deploy.sh v0.1.8 nina.batinic@yahoo.com ca2b9e1f-312a-45d4-9042-b370ffb88225 agent-tim15-terraform-backend-proba nikolina97 terraform-deploy
